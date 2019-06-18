@@ -1,0 +1,51 @@
+.container {
+	display: grid;
+}
+
+.navbar {
+	grid-area: 1/1/2/4;
+	display: grid;
+	grid-template: 50px / auto minmax(320px,1180px) auto;
+	background-color: #717c8c;
+	z-index: 10;
+}
+
+.nav-wrapper {
+	display: grid;
+	grid-template-columns: 120px repeat(4, fit-content(150px));
+	grid-column: 2/3;
+	grid-gap: 50px;
+	align-items: center;
+}
+
+section {
+	display: grid;
+	grid-area: 1/1/4/4;
+	height: 100vh;
+}
+
+.main {
+	background-color: aquamarine;
+	grid-template: auto 150px auto / auto minmax(320px,1180px) auto;
+	z-index: 9;
+}
+
+.main-text {
+	grid-row-start: 2;
+	grid-column-start: 2;
+}
+
+.scills {
+	z-index: 8;
+	background-color: burlywood
+}
+
+.portfolio {
+	z-index: 7;
+	background-color: cornflowerblue
+}
+
+.contacts {
+	z-index: 6;
+	background-color: darkolivegreen
+}
