@@ -5,9 +5,8 @@
 .navbar {
 	grid-area: 1/1/2/4;
 	display: grid;
-	grid-template: 50px / auto minmax(320px,1180px) auto;
+	grid-template: 50px / auto minmax(320px, 1180px) auto;
 	background-color: #717c8c;
-	z-index: 10;
 }
 
 .nav-wrapper {
@@ -22,12 +21,13 @@ section {
 	display: grid;
 	grid-area: 1/1/4/4;
 	height: 100vh;
+	transition: 1s;
 }
 
 .main {
 	background-color: aquamarine;
-	grid-template: auto 150px auto / auto minmax(320px,1180px) auto;
-	z-index: 9;
+	grid-template: auto 150px auto / auto minmax(320px, 1180px) auto;
+
 }
 
 .main-text {
@@ -36,37 +36,35 @@ section {
 }
 
 .scills {
-	z-index: 8;
+
 	background-color: burlywood
 }
 
 .portfolio {
-	z-index: 7;
+
 	background-color: cornflowerblue
 }
 
 .contacts {
-	z-index: 6;
+
 	background-color: darkolivegreen
 }
 
 .bottom-arrow {
-	z-index: 10;
 	grid-column-start: 2;
 	grid-row-end: 4;
-	text-align: center;
+	align-items: center;
 	cursor: pointer;
 }
 
 .polyline {
-	fill: none;
-	stroke: black;
-	stroke-width: 10;
-	stroke-linecap: round;
-}
-
-.circle {
+	display: block;
 	fill: none;
 	stroke: black;
 	stroke-width: 5;
+	stroke-linecap: round;
+}
+
+.up {
+	stroke: none;
 }
