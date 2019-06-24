@@ -85,6 +85,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (item > 0) {
 			up.style.stroke = "black";
 		}
+		if (item === 0) {
+			up.style.stroke = "none";
+		}
 		if (item < sections.length) {
 			down.style.stroke = "black";
 		}

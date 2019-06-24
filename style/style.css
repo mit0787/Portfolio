@@ -25,7 +25,8 @@ section {
 }
 
 .main {
-	background-color: aquamarine;
+	background: url(/img/avatar.jpg) no-repeat #c1baa8;
+	background-size: cover;
 	grid-template: auto 150px auto / auto minmax(320px, 1180px) auto;
 
 }
