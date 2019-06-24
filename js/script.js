@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		item--;
 		if (item <= 0) {
 			item = 0;
-			up.style.stroke = "none";
 		}
 		sections[item].style.transform = "translatey(0)";
 		arrowOn();
@@ -83,16 +82,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	function arrowOn() {
 		if (item > 0) {
-			up.style.stroke = "black";
+			up.style.display = "block";
+			setTimeout(()=> {
+				up.style.opacity = "1";
+			}, 100);
 		}
 		if (item === 0) {
-			up.style.stroke = "none";
+			up.style.opacity = "0";
+			setTimeout(()=> {
+				up.style.display = "none";
+			}, 500);
 		}
 		if (item < sections.length) {
-			down.style.stroke = "black";
+			down.style.transform = "translatey(0)";
+			up.style.transform = "translatey(0)";
 		}
 		if (item >= sections.length - 1) {
-			down.style.stroke = "none";
+			down.style.transform = "translatey(50px)";
+			up.style.transform = "translatey(30px)";
 		}
 	}
 
