@@ -1,13 +1,36 @@
+@font-face {
+	font-family: 'Proxima Nova Regular';
+	src: url('/fonts/ProximaNova-Regular.eot');
+	src: url('/fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
+	url('/fonts/ProximaNova-Regular.woff') format('woff'),
+	url('/fonts/ProximaNova-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	}
+
 .container {
 	display: grid;
 	overflow: hidden;
+	font-family: 'Proxima Nova Regular';
+}
+
+a {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+a:hover {
+	color: #262c56;
+	text-decoration: underline;
 }
 
 .navbar {
 	grid-area: 1/1/2/4;
 	display: grid;
 	grid-template: 50px / auto minmax(320px, 1180px) auto;
-	background-color: #717c8c;
+	background-color: #767885;
 }
 
 .nav-wrapper {
@@ -38,15 +61,15 @@ section {
 }
 
 .services {
-	background-color: burlywood
+	background-color: #A9B6C2
 }
 
 .portfolio {
-	background-color: cornflowerblue
+	background-color: #C2B082
 }
 
 .contacts {
-	background-color: darkolivegreen
+	background-color: #A9C2AC;
 }
 
 .bottom-arrow {

@@ -47,8 +47,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				if (j > i) {
 					arr[j - 1].style.transform = "translatey(0)";
 				}
-				arrowOn();
 				item = i;
+				arrowOn();
 			});
 		});
 	});
