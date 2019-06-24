@@ -2,11 +2,11 @@
 	font-family: 'Proxima Nova Regular';
 	src: url('/fonts/ProximaNova-Regular.eot');
 	src: url('/fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
-	url('/fonts/ProximaNova-Regular.woff') format('woff'),
-	url('/fonts/ProximaNova-Regular.ttf') format('truetype');
+		url('/fonts/ProximaNova-Regular.woff') format('woff'),
+		url('/fonts/ProximaNova-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
-	}
+}
 
 .container {
 	display: grid;
@@ -19,6 +19,7 @@ a {
 	font-weight: bold;
 	text-decoration: none;
 	text-transform: uppercase;
+	outline-style: none;
 }
 
 a:hover {
@@ -47,7 +48,7 @@ section {
 	height: 100vh;
 	transition: 1s;
 	grid-template: auto 150px auto / auto minmax(320px, 1180px) auto;
-	
+
 }
 
 .section-text {
@@ -56,20 +57,104 @@ section {
 }
 
 .main {
-	background: url(/img/avatar.jpg) no-repeat #c1baa8;
-	background-size: cover;
+	background: url("/img/avatar.jpg") no-repeat #ada592;
+	background-size: auto 100%;
+	background-position: right;
+	background-blend-mode: luminosity;
+}
+
+.main-title {
+	font-size: 48px;
+}
+
+.main-subtitle {
+	font-size: 32px;
 }
 
 .services {
-	background-color: #A9B6C2
+	background: url("/img/serv-bg2.svg") no-repeat #A7AABB;
+	background-size: auto 70vh;
+	background-position: calc(50vw - 200px);
+}
+
+.services-title {
+	text-transform: uppercase;
 }
 
 .portfolio {
-	background-color: #C2B082
+	grid-template-rows: 20vh 60vh auto;
+	background-color: #A692AD;
+}
+
+.portfolio-text {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.portfolio-title {
+	margin-bottom: 100px;
+	text-transform: uppercase;
+}
+
+.portfolio-item {
+	position: relative;
+	display: inline-block;
+	width: 570px;
+	height: 280px;
+}
+
+.item-title {
+	position: absolute;
+	top: 40%;
+	width: 200px;
+	font-size: 24px;
+	cursor: pointer;
+	color: white;
+	background-color: rgba(33, 41, 78, 0.8);
+	border-radius: 5px;
+	padding: 15px;
+}
+
+.sites {
+	margin-right: -60px;
+	background: url("/img/land.png") no-repeat #D6D4C4;
+	background-size: contain;
+	background-position: -25px;
+	-webkit-clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+	clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+}
+
+.sites .item-title {
+	left: 25%;
+}
+
+.polygon {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	fill-opacity: 0;
+	stroke: #262C56;
+	stroke-width: 10px;
+	cursor: pointer;
+}
+
+.practise {
+	margin-left: -60px;
+	background: url("/img/practise-bg.svg") no-repeat #6ac0ed;
+	background-size: 80% auto;
+	background-position: 80px -25px;
+	-webkit-clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0% 100%);
+	clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.practise .item-title {
+	right: 25%;
 }
 
 .contacts {
-	background-color: #A9C2AC;
+	background-color: #92AD94;
 }
 
 .bottom-arrow {
@@ -81,8 +166,9 @@ section {
 
 .polyline {
 	display: block;
+	margin: auto;
 	fill: none;
-	stroke: black;
+	stroke: #262C56;
 	stroke-width: 5;
 	stroke-linecap: round;
 	transition: 0.5s;

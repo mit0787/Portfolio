@@ -83,13 +83,13 @@ document.addEventListener("DOMContentLoaded", function () {
 	function arrowOn() {
 		if (item > 0) {
 			up.style.display = "block";
-			setTimeout(()=> {
+			setTimeout(() => {
 				up.style.opacity = "1";
 			}, 100);
 		}
 		if (item === 0) {
 			up.style.opacity = "0";
-			setTimeout(()=> {
+			setTimeout(() => {
 				up.style.display = "none";
 			}, 500);
 		}
