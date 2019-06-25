@@ -103,4 +103,22 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	}
 
+	const portfolio = document.querySelector(".portfolio"),
+		blockSites = document.querySelector(".sites"),
+		blockPractise = document.querySelector(".practise");
+
+	portfolio.addEventListener("mouseover",function(event) {
+		let target = event.target;
+		if (blockSites.contains(target)) {
+			blockSites.style.transform = "scale(1.1)";
+		} else {
+			blockSites.style.transform = "scale(1)";
+		}
+		if (blockPractise.contains(target)) {
+			blockPractise.style.transform = "scale(1.1)";
+		} else {
+			blockPractise.style.transform = "scale(1)";
+		}
+	});
+
 });

@@ -131,6 +131,7 @@ section {
 	display: inline-block;
 	width: 570px;
 	height: 280px;
+	transition: 0.5s;
 }
 
 .item-title {
