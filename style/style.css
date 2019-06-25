@@ -1,9 +1,9 @@
 @font-face {
 	font-family: 'Proxima Nova Regular';
-	src: url('./fonts/ProximaNova-Regular.eot');
-	src: url('./fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/ProximaNova-Regular.woff') format('woff'),
-		url('./fonts/ProximaNova-Regular.ttf') format('truetype');
+	src: url('../fonts/ProximaNova-Regular.eot');
+	src: url('../fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/ProximaNova-Regular.woff') format('woff'),
+		url('../fonts/ProximaNova-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -70,7 +70,7 @@ section {
 }
 
 .main {
-	background: url("./img/avatar.jpg") no-repeat #ada592;
+	background: url("../img/avatar.jpg") no-repeat #ada592;
 	background-size: auto 100%;
 	background-position: right;
 	background-blend-mode: luminosity;
@@ -86,7 +86,7 @@ section {
 
 .services {
 	grid-template-rows: 16vh 68vh auto;
-	background: url("./img/serv-bg.svg") no-repeat #A7AABB;
+	background: url("../img/serv-bg.svg") no-repeat #A7AABB;
 	background-size: auto 70vh;
 	background-position: center;
 }
@@ -148,7 +148,7 @@ section {
 
 .sites {
 	margin-right: -60px;
-	background: url("./img/land.png") no-repeat #D6D4C4;
+	background: url("../img/land.png") no-repeat #D6D4C4;
 	background-size: contain;
 	background-position: -25px;
 	-webkit-clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
@@ -173,7 +173,7 @@ section {
 
 .practise {
 	margin-left: -60px;
-	background: url("./img/practise-bg.svg") no-repeat #6ac0ed;
+	background: url("../img/practise-bg.svg") no-repeat #6ac0ed;
 	background-size: 80% auto;
 	background-position: 80px -25px;
 	-webkit-clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0% 100%);
@@ -186,7 +186,7 @@ section {
 
 .contacts {
 	grid-template-rows: 20vh 60vh auto;
-	background: url("./img/logo.svg") no-repeat #92AD94;
+	background: url("../img/logo.svg") no-repeat #92AD94;
 	background-position: calc(50vw - 400px) 50vh;
 }
 
