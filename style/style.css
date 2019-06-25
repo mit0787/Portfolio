@@ -30,7 +30,7 @@ a:hover {
 .navbar {
 	grid-area: 1/1/2/4;
 	display: grid;
-	grid-template: 50px / auto minmax(320px, 1180px) auto;
+	grid-template: 60px / auto minmax(320px, 1180px) auto;
 	background-color: #767885;
 }
 
@@ -40,6 +40,15 @@ a:hover {
 	grid-column: 2/3;
 	grid-gap: 50px;
 	align-items: center;
+}
+
+.logo {
+	margin-top: 5px;
+	width: 125px;
+}
+
+.logo img {
+	width: 100%;
 }
 
 section {
