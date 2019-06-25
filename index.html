@@ -64,10 +64,20 @@
 		</section>
 		<section class="contacts">
 			<div class="section-text contacts-text">
-				<h2 class="contacts-title">Связаться со мной можно:</h2>
-				<p class="phone"><a href="tel:+79250648250">+79250648250</a></p>
-				<p class="email"><a href="mailto:contacts@haiduk-art.ru">contacts@haiduk-art.ru</a></p>
-				<p class="vk"><a href="https://vk.com/haidukd">Вконтакте</a></p>
+				<div class="contacts-links">
+					<h2 class="contacts-title">Связаться со мной можно:</h2>
+					<p class="phone">Телефон: <a href="tel:+79250648250">+79250648250</a></p>
+					<p class="email">Почта: <a href="mailto:contacts@haiduk-art.ru">contacts@haiduk-art.ru</a></p>
+					<p class="vk">Соц. сети: <a href="https://vk.com/haidukd">Вконтакте</a>, <a href="https://msng.link/wa/79250648250">Watsapp</a> </p>
+				</div>
+				<form action="#" class="contacts-form" id="form">
+					<h2 class="form-title">Или отправте сообщение:</h2>
+					<input class="input" type="text" name="name" placeholder="Имя" required>
+					<input class="input" type="tel" name="phone" placeholder="Телефон" required>
+					<input class="input" type="email" name="mail" placeholder="Почта">
+					<textarea class="input" form="form" name="message" placeholder="Сообщение" maxlength="250" rows="5"></textarea>
+					<input class="input form-button" type="submit" value="Отправить">
+				</form>
 			</div>
 		</section>
 		<div class="bottom-arrow">

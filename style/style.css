@@ -8,6 +8,10 @@
 	font-style: normal;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 .container {
 	display: grid;
 	overflow: hidden;
@@ -81,13 +85,30 @@ section {
 }
 
 .services {
-	background: url("/img/serv-bg2.svg") no-repeat #A7AABB;
+	grid-template-rows: 16vh 68vh auto;
+	background: url("/img/serv-bg.svg") no-repeat #A7AABB;
 	background-size: auto 70vh;
-	background-position: calc(50vw - 200px);
+	background-position: center;
+}
+
+.services-text {
+	display: grid;
+	grid-template: 90px 540px / 90px minmax(min-content, 1000px) 90px;
+	font-size: 18px;
 }
 
 .services-title {
+	grid-column-start: 2; 
+	margin: auto;
 	text-transform: uppercase;
+	font-size: 32px;
+}
+
+.services-list {
+	grid-column-start: 2; 
+	grid-row-start: 2;
+	margin-left: 3vw;
+	margin-top: 3vw;
 }
 
 .portfolio {
@@ -163,7 +184,37 @@ section {
 }
 
 .contacts {
-	background-color: #92AD94;
+	grid-template-rows: 20vh 60vh auto;
+	background: url("/img/logo.svg") no-repeat #92AD94;
+	background-position: calc(50vw - 400px) 50vh;
+}
+
+.contacts-text {
+	display: flex;
+	justify-content: space-around;
+}
+
+.input {
+	display: block;
+	max-width: 300px;
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #262C56;
+	border-radius: 5px;
+	resize: none;
+}
+
+.form-button {
+	cursor: pointer;
+	max-width: 300px;
+	color: #ffffff;
+	background-color: #262C56;
+}
+
+.form-button:hover {
+	
+	background-color: rgba(33, 41, 78, 0.8);
 }
 
 .bottom-arrow {
