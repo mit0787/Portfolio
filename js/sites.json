@@ -1,0 +1,51 @@
+[
+	{
+		"type": "site",
+		"name": "Макетная мастерская",
+		"description": "Сайт компании по изготовлению макетов",
+		"url": "http://haiduk-art.ru/diploma/",
+		"image": "./img/mm.png"
+	},
+	{
+		"type": "site",
+		"name": "КАРТИНЫ.ART",
+		"description": "Сайт компании по изготовлению портретов",
+		"url": "https://mit0787.github.io/js-diploma/dist/",
+		"image": "./img/ka.png"
+	},
+	{
+		"type": "site",
+		"name": "Макетная мастерская",
+		"description": "Сайт компании по изготовлению макетов",
+		"url": "http://haiduk-art.ru/diploma/",
+		"image": "./img/mm.png"
+	},
+	{
+		"type": "site",
+		"name": "КАРТИНЫ.ART",
+		"description": "Сайт компании по изготовлению портретов",
+		"url": "https://mit0787.github.io/js-diploma/dist/",
+		"image": "./img/ka.png"
+	},
+	{
+		"type": "site",
+		"name": "КАРТИНЫ.ART",
+		"description": "Сайт компании по изготовлению портретов",
+		"url": "https://mit0787.github.io/js-diploma/dist/",
+		"image": "./img/ka.png"
+	},
+	{
+		"type": "site",
+		"name": "Макетная мастерская",
+		"description": "Сайт компании по изготовлению макетов",
+		"url": "http://haiduk-art.ru/diploma/",
+		"image": "./img/mm.png"
+	},
+	{
+		"type": "site",
+		"name": "КАРТИНЫ.ART",
+		"description": "Сайт компании по изготовлению портретов",
+		"url": "https://mit0787.github.io/js-diploma/dist/",
+		"image": "./img/ka.png"
+	}
+]

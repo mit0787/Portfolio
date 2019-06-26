@@ -110,6 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		blockSites = document.querySelector(".sites"),
 		blockPractise = document.querySelector(".practise"),
 		modal = document.querySelector(".modal"),
+		modalBlock = document.querySelector(".modal-block"),
 		modalCloseBtn = document.querySelector(".modal-close");
 
 	portfolio.addEventListener("mouseover", function (event) {
@@ -129,17 +130,60 @@ document.addEventListener("DOMContentLoaded", function () {
 	portfolio.addEventListener("click", function (event) {
 		let target = event.target;
 		if (blockSites.contains(target)) {
-			modal.style.display = "grid";
-			stopper = true;
+			showModal("site");
 		}
 		if (blockPractise.contains(target)) {
-			modal.style.display = "grid";
-			stopper = true;
+			showModal("practise");
 		}
 	});
+
+	function showModal(type) {
+		modal.style.display = "grid";
+		stopper = true;
+		loadWorks(type);
+		setTimeout(() => {
+			modal.style.opacity = "1";
+		}, 100);
+	} 
 
 	modalCloseBtn.addEventListener("click", () => {
 		modal.style.display = "none";
 		stopper = false;
+		modalBlock.innerHTML = "";
+		modal.style.opacity = "0";
 	});
+
+	function loadWorks(type) {
+		fetch("../js/sites.json")
+			.then((value) => {
+				if (value.status !== 200) {
+					return Promise.reject(value);
+				}
+				return value.json();
+			})
+			.then((output) => {
+				output.forEach((item) => {
+					let name = item.name,
+						descr = item.description,
+						url = item.url,
+						img = item.image;
+
+					if (type === item.type) {
+					modalBlock.innerHTML += `
+						<div class="modal-item">
+							<div class="modal-image">
+								<img src="${img}">
+							</div>
+							<h3 class="modal-title">${name}</h3>
+							<p>${descr}</p>
+							<a class="modal-button"href="${url}">Перейти</a>
+						</div>
+					`;
+					}
+				});
+			})
+			.catch(function() {
+				modalBlock.innerHTML = '<h2 class="col-12 text-center text-danger">Ошибка</h2>';
+			});
+	}
 });
