@@ -12,9 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		item.style.zIndex = zIndex;
 	});
 
-	navbar.style.zIndex = sections.length + 1;
-	arrow.style.zIndex = sections.length + 1;
-
 	down.addEventListener('click', function () {
 		pagePlus();
 	});
@@ -53,12 +50,18 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	});
 
+	let stopper = false;
+
 	function onWheel() {
-		let scroll = window.event.deltaY;
-		if (scroll > 0) {
-			pagePlus();
-		} else if (scroll < 0) {
-			pageMinus();
+		if (stopper === true) {
+			return;
+		} else {
+			let scroll = window.event.deltaY;
+			if (scroll > 0) {
+				pagePlus();
+			} else if (scroll < 0) {
+				pageMinus();
+			}
 		}
 	}
 
@@ -105,9 +108,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	const portfolio = document.querySelector(".portfolio"),
 		blockSites = document.querySelector(".sites"),
-		blockPractise = document.querySelector(".practise");
+		blockPractise = document.querySelector(".practise"),
+		modal = document.querySelector(".modal"),
+		modalCloseBtn = document.querySelector(".modal-close");
 
-	portfolio.addEventListener("mouseover",function(event) {
+	portfolio.addEventListener("mouseover", function (event) {
 		let target = event.target;
 		if (blockSites.contains(target)) {
 			blockSites.style.transform = "scale(1.1)";
@@ -121,4 +126,20 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	});
 
+	portfolio.addEventListener("click", function (event) {
+		let target = event.target;
+		if (blockSites.contains(target)) {
+			modal.style.display = "grid";
+			stopper = true;
+		}
+		if (blockPractise.contains(target)) {
+			modal.style.display = "grid";
+			stopper = true;
+		}
+	});
+
+	modalCloseBtn.addEventListener("click", () => {
+		modal.style.display = "none";
+		stopper = false;
+	});
 });
