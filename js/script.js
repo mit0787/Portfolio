@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						modalBlock.innerHTML += `
 						<div class="modal-item">
 							<div class="modal-image">
-								<img src="${img}">
+								<img src="img/${img}">
 							</div>
 							<h3 class="modal-title">${name}</h3>
 							<p>${descr}</p>
@@ -188,27 +188,43 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	const form = document.querySelector("#form"),
-		submitBtn = form.querySelector("[type='submit']");
+		answer = form.querySelector(".answer");
 
-	submitBtn.addEventListener('click', postData);
+	form.addEventListener('submit', postData);
 
 	function postData(e) {
 		e.preventDefault();
 
-		let str = "&name=" + encodeURIComponent(form.name.value) +
+		let str = "name=" + encodeURIComponent(form.name.value) +
 			"&phone=" + encodeURIComponent(form.phone.value) +
 			"&mail=" + encodeURIComponent(form.mail.value) +
 			"&message=" + encodeURIComponent(form.message.value);
-		console.log(str);
-
-		fetch('smart.php', {
+		fetch('mailer/smart.php', {
 			method: 'POST',
+			headers: {
+				'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+			},
 			body: str
 		}).then(function (response) {
-			console.log(response);
+			if (response.status !== 200) {
+				return Promise.reject(response);
+			}
 			return response;
-		}).then(function (data) {
-			console.log(data);
+		}).then(function () {
+			let input = form.querySelectorAll(".input");
+			for (let i = 0; i < input.length - 1; i++) {
+				input[i].value = '';
+			}
+			answer.innerHTML = 'Сообщение отправлено';
+			setTimeout(() => {
+				answer.innerHTML = '';
+			}, 5000);
+		}).catch(function (reason) {
+			answer.innerHTML = 'Ошибка';
+			setTimeout(() => {
+				answer.innerHTML = '';
+			}, 5000);
+			console.error('error: ' + reason.status);
 		});
 	}
 });
