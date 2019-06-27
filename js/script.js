@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		setTimeout(() => {
 			modal.style.opacity = "1";
 		}, 100);
-	} 
+	}
 
 	modalCloseBtn.addEventListener("click", () => {
 		modal.style.display = "none";
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	function loadWorks(type) {
-		fetch("../js/sites.json")
+		fetch("js/sites.json")
 			.then((value) => {
 				if (value.status !== 200) {
 					return Promise.reject(value);
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						img = item.image;
 
 					if (type === item.type) {
-					modalBlock.innerHTML += `
+						modalBlock.innerHTML += `
 						<div class="modal-item">
 							<div class="modal-image">
 								<img src="${img}">
@@ -182,8 +182,33 @@ document.addEventListener("DOMContentLoaded", function () {
 					}
 				});
 			})
-			.catch(function() {
-				modalBlock.innerHTML = '<h2 class="col-12 text-center text-danger">Ошибка</h2>';
+			.catch(function () {
+				modalBlock.innerHTML = '<h2">Ошибка</h2">';
 			});
+	}
+
+	const form = document.querySelector("#form"),
+		submitBtn = form.querySelector("[type='submit']");
+
+	submitBtn.addEventListener('click', postData);
+
+	function postData(e) {
+		e.preventDefault();
+
+		let str = "&name=" + encodeURIComponent(form.name.value) +
+			"&phone=" + encodeURIComponent(form.phone.value) +
+			"&mail=" + encodeURIComponent(form.mail.value) +
+			"&message=" + encodeURIComponent(form.message.value);
+		console.log(str);
+
+		fetch('smart.php', {
+			method: 'POST',
+			body: str
+		}).then(function (response) {
+			console.log(response);
+			return response;
+		}).then(function (data) {
+			console.log(data);
+		});
 	}
 });
