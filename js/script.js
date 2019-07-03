@@ -109,6 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	scrollOnTouch();
 
 	function scrollOnTouch() {
+
 		let startY,
 			endY;
 
@@ -117,13 +118,17 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 
 		window.addEventListener('touchend', (e) => {
-			endY = e.changedTouches[0].pageY;
-			if (endY < startY && endY !== startY) {
-				pagePlus();
-			} else if (endY > startY && endY !== startY) {
-				pageMinus();
+			if (stopper === true) {
+				return;
+			} else {
+				endY = e.changedTouches[0].pageY;
+				if (endY < startY && endY !== startY) {
+					pagePlus();
+				} else if (endY > startY && endY !== startY) {
+					pageMinus();
+				}
 			}
-		});	
+		});
 	}
 
 	const portfolio = document.querySelector(".portfolio"),
@@ -259,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	const partner = document.querySelector('.partner'),
-	 	defaultBanner = "<a href='https://link-host.net/billing/pl.php?16555' alt='Link-Host.net' target='_blank'><img src='https://link-host.net/billing/_rootimages/banners/468.gif' border='0'></a>",
+		defaultBanner = "<a href='https://link-host.net/billing/pl.php?16555' alt='Link-Host.net' target='_blank'><img src='https://link-host.net/billing/_rootimages/banners/468.gif' border='0'></a>",
 		smallBanner = "<a href='https://link-host.net/billing/pl.php?16555' alt='Link-Host.net' target='_blank'><img src='https://link-host.net/billing/_rootimages/banners/125.gif' border='0'></a>";
 
 	if (screen.width < 576) {
