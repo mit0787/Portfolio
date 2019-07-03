@@ -208,6 +208,8 @@ section {
 
 .contacts-form {
 	grid-area: 2/3/3/4;
+	max-width: 300px;
+	width: 100%;
 }
 
 .partner {
@@ -234,7 +236,6 @@ section {
 }
 
 .form-button:hover {
-	
 	background-color: rgba(33, 41, 78, 0.8);
 }
 
@@ -272,6 +273,76 @@ section {
 	grid-row-start: 2;
 }
 
+.modal {
+	grid-area: 1/1/4/2;
+	z-index: 100;
+	display: none;
+	grid-template: 15vh 70vh 15vh / auto minmax(320px, 1180px) auto;
+	grid-gap: 30px;
+	background: rgba(78, 74, 33, 0.8);
+	opacity: 0;
+	transition: 0.5s;
+}
+
+.modal-wrapper {
+	grid-area: 2/2/3/3;
+	background: #ffffff;
+	border-radius: 15px;
+	position: relative;
+	padding: 40px 15px;
+}
+
+.modal-close {
+	position: absolute;
+	top: 5px;
+	right: 15px;
+	outline-style: none;
+	cursor: pointer;
+	font-size: 32px;
+}
+
+.modal-block {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+	height: 100%;
+	overflow-y: scroll;
+}
+
+.modal-item {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	min-width: 262px;
+	margin-bottom: 15px;
+	padding: 15px;
+	border: 1px solid #262C56;
+	border-radius: 5px;
+	text-align: center;
+	background-color: #A7AABB;
+}
+
+.modal-image {
+	width: 200px;
+	height: 230px;
+}
+
+.modal-image img{
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	overflow: hidden;
+}
+
+.modal-text {
+	max-width: 300px;
+}
+
+.modal-title {
+	text-transform: uppercase;
+}
+
 @media (min-width: 1900px) {
 	.services-list {
 		margin-top: 5vh;
@@ -286,6 +357,10 @@ section {
 
 	.main-text {
 		align-self: center;
+	}
+
+	.modal {
+		grid-gap: 100px;
 	}
 }
 
@@ -470,6 +545,15 @@ section {
 	.partner {
 		grid-area: 4/2/5/3;
 	}
+
+	.modal {
+		grid-gap: 20px;
+	}
+
+	.modal-image {
+		width: 150px;
+		height: 180px;
+	}
 }
 
 @media (max-width: 576px) {
@@ -484,12 +568,18 @@ section {
 	.services-list {
 		justify-self: center;
 	}
-}
 
-.modal-close {
-	display: none;
-}
+	.modal {
+		grid-template-rows: 60px 70vh 15vh; 
+		grid-gap: 0;
+	}
 
-.modal {
-	display: none;
+	.modal-item {
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.modal-image {
+		margin: auto;
+	}
 }

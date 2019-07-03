@@ -106,20 +106,48 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	}
 
+	scrollOnTouch();
+
+	function scrollOnTouch() {
+		let startY,
+			endY;
+
+		window.addEventListener('touchstart', (e) => {
+			startY = e.changedTouches[0].pageY;
+		});
+
+		window.addEventListener('touchend', (e) => {
+			endY = e.changedTouches[0].pageY;
+			if (endY < startY && endY !== startY) {
+				pagePlus();
+			} else if (endY > startY && endY !== startY) {
+				pageMinus();
+			}
+		});	
+	}
+
 	const portfolio = document.querySelector(".portfolio"),
 		blockSites = document.querySelector(".sites"),
 		blockPractise = document.querySelector(".practise"),
 		modal = document.querySelector(".modal"),
+		modalWrap = document.querySelector(".modal-wrapper"),
 		modalBlock = document.querySelector(".modal-block"),
 		modalCloseBtn = document.querySelector(".modal-close");
 
-	portfolio.addEventListener("click", function (event) {
+	portfolio.addEventListener("click", () => {
 		let target = event.target;
 		if (blockSites.contains(target)) {
 			showModal("site");
 		}
 		if (blockPractise.contains(target)) {
 			showModal("practise");
+		}
+	});
+
+	modal.addEventListener('click', () => {
+		let target = event.target;
+		if (!modalWrap.contains(target)) {
+			closeModal();
 		}
 	});
 
@@ -133,11 +161,15 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	modalCloseBtn.addEventListener("click", () => {
+		closeModal();
+	});
+
+	function closeModal() {
 		modal.style.display = "none";
 		stopper = false;
 		modalBlock.innerHTML = "";
 		modal.style.opacity = "0";
-	});
+	}
 
 	function loadWorks(type) {
 		fetch("js/sites.json")
@@ -160,9 +192,11 @@ document.addEventListener("DOMContentLoaded", function () {
 							<div class="modal-image">
 								<img src="img/${img}">
 							</div>
-							<h3 class="modal-title">${name}</h3>
-							<p>${descr}</p>
-							<a class="modal-button"href="${url}">Перейти</a>
+							<div class="modal-text">
+								<h3 class="modal-title">${name}</h3>
+								<p>${descr}</p>
+								<a class="modal-button"href="${url}">Перейти</a>
+							</div>
 						</div>
 					`;
 					}
@@ -174,7 +208,17 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	const form = document.querySelector("#form"),
-		answer = form.querySelector(".answer");
+		answer = form.querySelector(".answer"),
+		contButton = document.querySelector(".contacts-button");
+
+	contButton.addEventListener('click', () => {
+		showModal();
+		let form2 = form.cloneNode(true);
+		form2.classList.add('modal-form');
+		form2.querySelector(".form-title").style.display = "none";
+		form2.style.display = "block";
+		modalBlock.appendChild(form2);
+	});
 
 	form.addEventListener('submit', postData);
 
@@ -214,8 +258,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 
-	const partner = document.querySelector('.partner');
-	let defaultBanner = "<a href='https://link-host.net/billing/pl.php?16555' alt='Link-Host.net' target='_blank'><img src='https://link-host.net/billing/_rootimages/banners/468.gif' border='0'></a>",
+	const partner = document.querySelector('.partner'),
+	 	defaultBanner = "<a href='https://link-host.net/billing/pl.php?16555' alt='Link-Host.net' target='_blank'><img src='https://link-host.net/billing/_rootimages/banners/468.gif' border='0'></a>",
 		smallBanner = "<a href='https://link-host.net/billing/pl.php?16555' alt='Link-Host.net' target='_blank'><img src='https://link-host.net/billing/_rootimages/banners/125.gif' border='0'></a>";
 
 	if (screen.width < 576) {
@@ -231,29 +275,4 @@ document.addEventListener("DOMContentLoaded", function () {
 			partner.innerHTML = defaultBanner;
 		}
 	});
-
-	scrollOnTouch();
-
-	function scrollOnTouch() {
-		let startY,
-			endY;
-
-		window.addEventListener('touchstart', (e) => {
-			startY = e.touches[0].screenY;
-		});
-
-		window.addEventListener('touchmove', (e) => {
-			endY = e.touches[0].screenY;
-		});
-
-		window.addEventListener('touchend', (e) => {
-
-			if (endY < startY && endY !== undefined) {
-				pagePlus();
-			} else if (endY > startY && endY !== undefined) {
-				pageMinus();
-			}
-
-		});
-	}
 });
