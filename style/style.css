@@ -242,6 +242,7 @@ section {
 	display: none;
 	border: none;
 	border-radius: 5px;
+	outline-style: none;
 }
 
 .bottom-arrow {
@@ -278,18 +279,91 @@ section {
 	}
 }
 
-@media (min-height: 1000px) and (max-width: 900px) {
+@media (max-width: 1200px) {
 	.main {
-		background-position: calc(50% + 50px);
+		background-position: calc(50% + 150px);
 	}
 
 	.main-text {
 		align-self: center;
-		margin-top: 25vh;
 	}
 }
 
-@media (max-width: 991px) {
+@media (orientation: landscape) and (max-width: 900px) {
+	.main-title {
+		font-size: 24px;
+	}
+
+	.main-subtitle {
+		font-size: 18px;
+	}
+
+	.services-image {
+		display: none;
+	}
+
+	.portfolio {
+		grid-template-rows: 20vh 15vh 140px auto
+	}
+
+	.portfolio-title {
+		font-size: 18px;
+	}
+
+	.sites {
+		margin-right: -45px;
+	}
+
+	.sites .item-title {
+		margin-left: 15%;
+	}
+
+	.practise {
+		margin-left: -45px;
+	}
+
+	.practise .item-title {
+		margin-right: 15%;
+	}
+
+	.bottom-arrow {
+		justify-self: end;
+	}
+
+	.contacts {
+		grid-template: 10vh min-content 40px  auto / auto minmax(280px, 450px) auto;
+		justify-items: center;
+		grid-row-gap: 20px;
+		background: #92AD94;
+	}
+
+	.contacts-button {
+		display: block;
+		grid-area: 3/2/4/3;
+	}
+
+	.contacts-form {
+		display: none;
+	}
+
+	.contacts-button {
+		width: 100%;
+	}
+
+	.partner {
+		grid-area: 4/2/5/3;
+	}
+
+}
+
+@media (orientation: landscape) and (max-width: 600px) {
+	.partner {
+		display: none;
+	}
+}
+
+
+@media (orientation: portrait) and (max-width: 991px) {
 	.main-text {
 		align-self: center;
 	}
@@ -329,9 +403,17 @@ section {
 }
 
 
-@media (max-width: 768px) {
+@media (orientation: portrait) and (max-width: 768px) {
 	.navbar {
 		grid-gap: 20px;
+	}
+
+	.main-title {
+		font-size: 24px;
+	}
+
+	.main-subtitle {
+		font-size: 18px;
 	}
 
 	.portfolio {
@@ -368,6 +450,7 @@ section {
 		grid-template: 15vh 30vh 40px auto / auto minmax(280px, 340px) auto;
 		grid-row-gap: 30px;
 		background: #92AD94;
+		justify-items: center;
 	}
 
 	.contacts-links {
@@ -381,6 +464,7 @@ section {
 	.contacts-button {
 		display: block;
 		grid-area: 3/2/4/3;
+		width: 100%;
 	}
 
 	.partner {

@@ -225,5 +225,5 @@ document.addEventListener("DOMContentLoaded", function () {
 		} else {
 			partner.innerHTML = defaultLink;
 		}
-	})
+	});
 });
