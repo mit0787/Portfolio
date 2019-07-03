@@ -215,15 +215,45 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	const partner = document.querySelector('.partner');
-	let defaultLink = "<a href='https://link-host.net/billing/pl.php?16555' alt='Link-Host.net' target='_blank'><img src='https://link-host.net/billing/_rootimages/banners/468.gif' border='0'></a>";
+	let defaultBanner = "<a href='https://link-host.net/billing/pl.php?16555' alt='Link-Host.net' target='_blank'><img src='https://link-host.net/billing/_rootimages/banners/468.gif' border='0'></a>",
+		smallBanner = "<a href='https://link-host.net/billing/pl.php?16555' alt='Link-Host.net' target='_blank'><img src='https://link-host.net/billing/_rootimages/banners/125.gif' border='0'></a>";
 
-	partner.innerHTML = defaultLink;
+	if (screen.width < 576) {
+		partner.innerHTML = smallBanner;
+	} else {
+		partner.innerHTML = defaultBanner;
+	}
 
 	window.addEventListener('resize', () => {
-		if(screen.width < 576) {
-			partner.innerHTML = "<a href='https://link-host.net/billing/pl.php?16555' alt='Link-Host.net' target='_blank'><img src='https://link-host.net/billing/_rootimages/banners/125.gif' border='0'></a>";
+		if (screen.width < 576) {
+			partner.innerHTML = smallBanner;
 		} else {
-			partner.innerHTML = defaultLink;
+			partner.innerHTML = defaultBanner;
 		}
 	});
+
+	scrollOnTouch();
+
+	function scrollOnTouch() {
+		let startY,
+			endY;
+
+		window.addEventListener('touchstart', (e) => {
+			startY = e.touches[0].screenY;
+		});
+
+		window.addEventListener('touchmove', (e) => {
+			endY = e.touches[0].screenY;
+		});
+
+		window.addEventListener('touchend', (e) => {
+
+			if (endY < startY && endY !== undefined) {
+				pagePlus();
+			} else if (endY > startY && endY !== undefined) {
+				pageMinus();
+			}
+
+		});
+	}
 });
