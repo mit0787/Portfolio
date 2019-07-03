@@ -154,9 +154,9 @@ section {
 
 .sites {
 	margin-right: -65px;
-	background: url("../img/land.png") no-repeat #D6D4C4;
-	background-size: contain;
-	background-position: -25px;
+	background: url("../img/sites-bg.svg") no-repeat #6ac0ed;
+	background-size: 80%;
+	background-position: 0 -25px;
 	-webkit-clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
 	clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
 }
@@ -168,9 +168,9 @@ section {
 .practise {
 	grid-column-start: 3;
 	margin-left: -65px;
-	background: url("../img/practise-bg.svg") no-repeat #6ac0ed;
-	background-size: 80% auto;
-	background-position: 80px -25px;
+	background: url("../img/practise-bg.svg") no-repeat #f4ac25;
+	background-size: 90% auto;
+	background-position: 50px -15px;
 	-webkit-clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0% 100%);
 	clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0% 100%);
 }
@@ -278,7 +278,7 @@ section {
 	z-index: 100;
 	display: none;
 	grid-template: 15vh 70vh 15vh / auto minmax(320px, 1180px) auto;
-	grid-gap: 30px;
+	grid-column-gap: 30px;
 	background: rgba(78, 74, 33, 0.8);
 	opacity: 0;
 	transition: 0.5s;
@@ -360,7 +360,7 @@ section {
 	}
 
 	.modal {
-		grid-gap: 100px;
+		grid-column-gap: 100px;
 	}
 }
 
@@ -428,7 +428,11 @@ section {
 	.partner {
 		grid-area: 4/2/5/3;
 	}
-
+	
+	.modal {
+		grid-template-rows: 10vh 80vh 10vh;
+		grid-column-gap: 20px;
+	}
 }
 
 @media (orientation: landscape) and (max-width: 600px) {
