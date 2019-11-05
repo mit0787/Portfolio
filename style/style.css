@@ -36,7 +36,7 @@ a:hover {
 .navbar {
 	grid-area: 1/1/2/2;
 	display: grid;
-	grid-template-columns: auto 125px 30px minmax(145px, 945px)  auto;
+	grid-template-columns: auto 125px 30px minmax(145px, 945px) auto;
 	grid-column-gap: 20px;
 	align-items: center;
 	z-index: 90;
@@ -94,7 +94,7 @@ section {
 
 .services {
 	grid-template-rows: 20vh 70px 55vh auto;
-	grid-template-columns: auto minmax(60vw, 800px ) auto;
+	grid-template-columns: auto minmax(60vw, 800px) auto;
 	background: #92AD94;
 }
 
@@ -118,8 +118,10 @@ section {
 }
 
 .portfolio {
-	grid-template: 20vh 10vh 280px auto / auto repeat(2, minmax(240px, 481px)) auto;
+	grid-template: 20vh 10vh 280px 50px auto / auto repeat(2, minmax(240px, 481px)) auto;
 	background-color: #A692AD;
+	perspective: 500px;
+	perspective-origin: 50% 50%;
 }
 
 .portfolio-title {
@@ -128,7 +130,14 @@ section {
 	text-transform: uppercase;
 }
 
+.portfolio-block {
+	grid-area: 3/2/5/4;
+	display: grid;
+	grid-template: auto 50px / 15% auto 15%;
+}
+
 .portfolio-item {
+	z-index: 100;
 	grid-row-start: 3;
 	grid-column-start: 2;
 	position: relative;
@@ -189,6 +198,60 @@ section {
 	stroke: #262C56;
 	stroke-width: 10px;
 	cursor: pointer;
+}
+
+.list-block {
+	overflow: hidden;
+	position: relative;
+	opacity: 0;
+	transition: 0.5s;
+}
+
+.list-item {
+	position: absolute;
+	display: flex;
+	width: 101%;
+	transition: 0.5s;
+}
+
+.list-item:not(:first-child) {
+	/* display: none; */
+	transform: translateX(100%);
+	opacity: 0;
+}
+
+.list-item-image {
+	max-width: 280px;
+	max-height: 280px;
+	overflow: hidden;
+}
+
+.list-item-image img {
+	width: 100%;
+}
+
+.list-item-text {
+	margin-left: 30px;
+	max-width: 280px;
+}
+
+.slider-arrow {
+	margin: auto;
+	cursor: pointer;
+	z-index: 50;
+}
+
+.slider-arrow-left {
+	margin-right: 20px;
+}
+
+.slider-arrow-right {
+	margin-left: 20px;
+}
+
+.button-back {
+	grid-area: 2/2/3/3;
+	display: none;
 }
 
 .contacts {
@@ -328,7 +391,7 @@ section {
 	height: 230px;
 }
 
-.modal-image img{
+.modal-image img {
 	width: 100%;
 	height: 100%;
 	object-fit: contain;
@@ -377,36 +440,12 @@ section {
 		display: none;
 	}
 
-	.portfolio {
-		grid-template-rows: 20vh 15vh 140px auto
-	}
-
-	.portfolio-title {
-		font-size: 18px;
-	}
-
-	.sites {
-		margin-right: -45px;
-	}
-
-	.sites .item-title {
-		margin-left: 15%;
-	}
-
-	.practise {
-		margin-left: -45px;
-	}
-
-	.practise .item-title {
-		margin-right: 15%;
-	}
-
 	.bottom-arrow {
 		justify-self: end;
 	}
 
 	.contacts {
-		grid-template: 10vh min-content 40px  auto / auto minmax(280px, 450px) auto;
+		grid-template: 10vh min-content 40px auto / auto minmax(280px, 450px) auto;
 		justify-items: center;
 		grid-row-gap: 20px;
 		background: #92AD94;
@@ -428,12 +467,19 @@ section {
 	.partner {
 		grid-area: 4/2/5/3;
 	}
-	
+
 	.modal {
 		grid-template-rows: 10vh 80vh 10vh;
 		grid-column-gap: 20px;
 	}
 }
+
+@media (max-width: 900px) {
+	.portfolio-item {
+		display: none;
+	}
+}
+
 
 @media (orientation: landscape) and (max-width: 600px) {
 	.partner {
@@ -445,35 +491,6 @@ section {
 @media (orientation: portrait) and (max-width: 991px) {
 	.main-text {
 		align-self: center;
-	}
-
-	.portfolio {
-		grid-template-rows: 20vh 10vh 200px auto;
-		grid-template-columns: auto repeat(2, 340px) auto
-	}
-
-	.portfolio-item {
-		transform: scale(1);
-	}
-
-	.portfolio-item:hover {
-		transform: scale(1);
-	}
-
-	.sites {
-		margin-right: -55px;
-	}
-
-	.sites .item-title {
-		margin-left: 20%;
-	}
-
-	.practise {
-		margin-left: -55px;
-	}
-
-	.practise .item-title {
-		margin-right: 20%;
 	}
 
 	.contacts {
@@ -493,36 +510,6 @@ section {
 
 	.main-subtitle {
 		font-size: 18px;
-	}
-
-	.portfolio {
-		grid-template: 10vh 5vh 160px 160px auto / auto minmax(280px, 340px) auto;
-		grid-gap: 20px;
-	}
-
-	.portfolio-title {
-		grid-area: 2/2/3/3;
-		font-size: 18px;
-	}
-
-	.portfolio-item {
-		margin: 0;
-		border: 5px solid #262C56;
-		clip-path: none;
-	}
-
-	.practise {
-		grid-row-start: 4;
-		grid-column-start: 2;
-	}
-
-	.portfolio .item-title,
-	.sites .item-title {
-		margin: auto;
-	}
-
-	.polygon {
-		display: none;
 	}
 
 	.contacts {
@@ -573,8 +560,28 @@ section {
 		justify-self: center;
 	}
 
+	.portfolio {
+		grid-template: 20vh 10vh 280px 50px auto / auto minmax(240px, 481px) auto;
+	}
+
+	.portfolio-block {
+		grid-area: 3/1/4/4;
+	}
+
+	.slider-arrow-right {
+		margin-left: 0;
+	}
+
+	.list-item-text {
+		display: none;
+	}
+
+	.list-item-image {
+		margin: auto;
+	}
+
 	.modal {
-		grid-template-rows: 60px 70vh 15vh; 
+		grid-template-rows: 60px 70vh 15vh;
 		grid-gap: 0;
 	}
 

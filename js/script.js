@@ -1,11 +1,10 @@
-"use strict";
-document.addEventListener("DOMContentLoaded", function () {
-	const navbar = document.querySelector('.navbar'),
-		arrow = document.querySelector('.bottom-arrow'),
+'use strict';
+document.addEventListener('DOMContentLoaded', function () {
+	const arrow = document.querySelector('.bottom-arrow'),
 		up = arrow.querySelector('.up'),
 		down = arrow.querySelector('.down'),
 		sections = document.querySelectorAll('section'),
-		links = document.querySelectorAll('a[href^="#"]');
+		links = document.querySelectorAll("a[href^='#']");
 
 	sections.forEach(function (item, i, arr) {
 		let zIndex = arr.length - i;
@@ -23,13 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
 	if (window.addEventListener) {
 		if ('onwheel' in document) {
 			// IE9+, FF17+, Ch31+
-			window.addEventListener("wheel", onWheel);
+			window.addEventListener('wheel', onWheel);
 		} else if ('onmousewheel' in document) {
 			// устаревший вариант события
-			window.addEventListener("mousewheel", onWheel);
+			window.addEventListener('mousewheel', onWheel);
 		} else {
 			// Firefox < 17
-			window.addEventListener("MozMousePixelScroll", onWheel);
+			window.addEventListener('MozMousePixelScroll', onWheel);
 		}
 	}
 
@@ -39,10 +38,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		itemL.addEventListener('click', () => {
 			sections.forEach((itemS, j, arr) => {
 				if (j < i) {
-					itemS.style.transform = "translatey(-100%)";
+					itemS.style.transform = 'translatey(-100%)';
 				}
 				if (j > i) {
-					arr[j - 1].style.transform = "translatey(0)";
+					arr[j - 1].style.transform = 'translatey(0)';
 				}
 				item = i;
 				arrowOn();
@@ -69,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (item >= sections.length - 2) {
 			item = sections.length - 2;
 		}
-		sections[item].style.transform = "translatey(-100%)";
+		sections[item].style.transform = 'translatey(-100%)';
 		item++;
 		arrowOn();
 	}
@@ -79,30 +78,30 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (item <= 0) {
 			item = 0;
 		}
-		sections[item].style.transform = "translatey(0)";
+		sections[item].style.transform = 'translatey(0)';
 		arrowOn();
 	}
 
 	function arrowOn() {
 		if (item > 0) {
-			up.style.display = "block";
+			up.style.display = 'block';
 			setTimeout(() => {
-				up.style.opacity = "1";
+				up.style.opacity = '1';
 			}, 100);
 		}
 		if (item === 0) {
-			up.style.opacity = "0";
+			up.style.opacity = '0';
 			setTimeout(() => {
-				up.style.display = "none";
+				up.style.display = 'none';
 			}, 500);
 		}
 		if (item < sections.length) {
-			down.style.transform = "translatey(0)";
-			up.style.transform = "translatey(0)";
+			down.style.transform = 'translatey(0)';
+			up.style.transform = 'translatey(0)';
 		}
 		if (item >= sections.length - 1) {
-			down.style.transform = "translatey(50px)";
-			up.style.transform = "translatey(30px)";
+			down.style.transform = 'translatey(50px)';
+			up.style.transform = 'translatey(30px)';
 		}
 	}
 
@@ -131,23 +130,88 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 
-	const portfolio = document.querySelector(".portfolio"),
-		blockSites = document.querySelector(".sites"),
-		blockPractise = document.querySelector(".practise"),
-		modal = document.querySelector(".modal"),
-		modalWrap = document.querySelector(".modal-wrapper"),
-		modalBlock = document.querySelector(".modal-block"),
-		modalCloseBtn = document.querySelector(".modal-close");
+	const portfolio = document.querySelector('.portfolio'),
+		blockSites = document.querySelector('.sites'),
+		blockPractise = document.querySelector('.practise'),
+		modal = document.querySelector('.modal'),
+		modalWrap = document.querySelector('.modal-wrapper'),
+		modalBlock = document.querySelector('.modal-block'),
+		modalCloseBtn = document.querySelector('.modal-close'),
+		portfolioBlock = document.querySelector('.portfolio-block'),
+		listBlock = document.querySelector('.list-block'),
+		portfolioCloseBtn = document.querySelector('.button-back'),
+		arrowL = document.querySelector('.slider-arrow-left'),
+		arrowR = document.querySelector('.slider-arrow-right');
 
-	portfolio.addEventListener("click", () => {
+	let a = 0;
+
+	portfolio.addEventListener('click', () => {
 		let target = event.target;
-		if (blockSites.contains(target)) {
-			showModal("site");
-		}
-		if (blockPractise.contains(target)) {
-			showModal("practise");
+		if (blockSites.contains(target) && a === 0) {
+			translateBlocks();
+			a = 1;
+			loadWorks('site');
+			displayArrows();
+			listBlock.style.opacity = 1;
+		} else if (blockPractise.contains(target) && a === 0) {
+			translateBlocks();
+			a = 2;
+			loadWorks('practise');
+			displayArrows();
+			listBlock.style.opacity = 1;
+		} else if (blockSites.contains(target) && a === 2) {
+			returnBlocks();
+			listBlock.style.opacity = 0;
+			setTimeout(function () {
+				translateBlocks();
+				loadWorks('site');
+				listBlock.style.opacity = 1;
+			}, 500);
+			a = 1;
+			setTimeout(function () {
+				listBlock.innerHTML = '';
+			}, 400);
+		} else if (blockPractise.contains(target) && a === 1) {
+			returnBlocks();
+			listBlock.style.opacity = 0;
+			setTimeout(function () {
+				translateBlocks();
+				loadWorks('practise');
+				listBlock.style.opacity = 1;
+			}, 500);
+			a = 2;
+			setTimeout(function () {
+				listBlock.innerHTML = '';
+			}, 400);
 		}
 	});
+
+	if (screen.width < 900) {
+		loadWorks('all');
+		listBlock.style.opacity = 1;
+	}
+
+
+	portfolioCloseBtn.addEventListener('click', () => {
+		returnBlocks();
+		listBlock.style.opacity = 0;
+		setTimeout(function () {
+			listBlock.innerHTML = '';
+		}, 400);
+		a = 0;
+		hideArrows();
+	});
+
+	function translateBlocks() {
+		blockSites.style.transform = 'translatex(-50%) rotatey(120deg)';
+		blockPractise.style.transform = 'translatex(50%) rotatey(-120deg)';
+	}
+
+	function returnBlocks() {
+		blockSites.style.transform = 'translatex(0) rotatey(0)';
+		blockPractise.style.transform = 'translatex(0) rotatey(0)';
+	}
+
 
 	modal.addEventListener('click', () => {
 		let target = event.target;
@@ -157,27 +221,30 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	function showModal(type) {
-		modal.style.display = "grid";
+		modal.style.display = 'grid';
 		stopper = true;
 		loadWorks(type);
 		setTimeout(() => {
-			modal.style.opacity = "1";
+			modal.style.opacity = '1';
 		}, 100);
 	}
 
-	modalCloseBtn.addEventListener("click", () => {
+	modalCloseBtn.addEventListener('click', () => {
 		closeModal();
 	});
 
 	function closeModal() {
-		modal.style.display = "none";
+		modal.style.display = 'none';
 		stopper = false;
-		modalBlock.innerHTML = "";
-		modal.style.opacity = "0";
+		modalBlock.innerHTML = '';
+		modal.style.opacity = '0';
 	}
 
+	let itemTemplate = document.querySelector('#list-item-template').content.querySelector('.list-item'),
+		buttonBack = document.querySelector('.button-back');
+
 	function loadWorks(type) {
-		fetch("js/sites.json")
+		fetch('js/sites.json')
 			.then((value) => {
 				if (value.status !== 200) {
 					return Promise.reject(value);
@@ -186,42 +253,95 @@ document.addEventListener("DOMContentLoaded", function () {
 			})
 			.then((output) => {
 				output.forEach((item) => {
-					let name = item.name,
-						descr = item.description,
-						url = item.url,
-						img = item.image;
+					let block = itemTemplate.cloneNode(true),
+						itemImage = block.querySelector('.list-item-image img'),
+						itemTitle = block.querySelector('.list-item-title'),
+						itemText = block.querySelector('.list-item-text div'),
+						itemLink = block.querySelector('.list-item-link');
 
-					if (type === item.type) {
-						modalBlock.innerHTML += `
-						<div class="modal-item">
-							<div class="modal-image">
-								<img src="img/${img}">
-							</div>
-							<div class="modal-text">
-								<h3 class="modal-title">${name}</h3>
-								<p>${descr}</p>
-								<a class="modal-button"href="${url}">Перейти</a>
-							</div>
-						</div>
-					`;
+					if (type === item.type || type === 'all') {
+						listBlock.appendChild(block);
+						itemImage.src = `img/${item.image}`;
+						itemTitle.innerHTML = item.name;
+						itemText.innerHTML = item.description;
+						itemLink.href = item.url;
 					}
 				});
 			})
+			.then(() => {
+				let listItem = listBlock.querySelectorAll('.list-item');
+				slider(listItem);
+			})
 			.catch(function () {
-				modalBlock.innerHTML = '<h2">Ошибка</h2">';
+				modalBlock.innerHTML = '<h2>Ошибка</h2>';
 			});
 	}
 
-	const form = document.querySelector("#form"),
-		answer = form.querySelector(".answer"),
-		contButton = document.querySelector(".contacts-button");
+	function displayArrows() {
+		buttonBack.style.display = 'block';
+	}
+
+	function hideArrows() {
+		buttonBack.style.display = 'none';
+	}
+
+	function slider(coll) {
+		let elem = 0;
+		portfolioBlock.addEventListener('click', () => {
+			let target = event.target;
+
+			if (arrowL.contains(target)) {
+				if (elem < coll.length - 1) {
+					coll[elem].style.transform = 'translateX(-100%)';
+					coll[elem].style.opacity = 0;
+					coll[elem + 1].style.transform = 'translateX(0)';
+					coll[elem + 1].style.opacity = 1;
+					elem++;
+				} else {
+					coll.forEach((item) => {
+						item.style.transform = 'translateX(100%)';
+						item.style.opacity = 0;
+					});
+					// coll[elem].style.transform = 'translateX(100%)';
+					elem = 0;
+					coll[elem].style.transform = 'translateX(0)';
+					coll[elem].style.opacity = 1;
+				}
+			}
+
+			if (arrowR.contains(target)) {
+				if (elem > 0) {
+					coll[elem].style.transform = 'translateX(100%)';
+					coll[elem].style.opacity = 0;
+					coll[elem - 1].style.transform = 'translateX(0)';
+					coll[elem - 1].style.opacity = 1;
+					elem--;
+				} else {
+					coll.forEach((item) => {
+						item.style.transform = 'translateX(-100%)';
+						item.style.opacity = 0;
+					});
+					// coll[elem].style.display = 'none';
+					elem = coll.length - 1;
+					coll[elem].style.transform = 'translateX(0)';
+					coll[elem].style.opacity = 1;
+				}
+
+			}
+		});
+	}
+
+
+	const form = document.querySelector('#form'),
+		answer = form.querySelector('.answer'),
+		contButton = document.querySelector('.contacts-button');
 
 	contButton.addEventListener('click', () => {
 		showModal();
 		let form2 = form.cloneNode(true);
 		form2.classList.add('modal-form');
-		form2.querySelector(".form-title").style.display = "none";
-		form2.style.display = "block";
+		form2.querySelector('.form-title').style.display = 'none';
+		form2.style.display = 'block';
 		modalBlock.appendChild(form2);
 	});
 
@@ -230,10 +350,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	function postData(e) {
 		e.preventDefault();
 
-		let str = "name=" + encodeURIComponent(form.name.value) +
-			"&phone=" + encodeURIComponent(form.phone.value) +
-			"&mail=" + encodeURIComponent(form.mail.value) +
-			"&message=" + encodeURIComponent(form.message.value);
+		let str = 'name=' + encodeURIComponent(form.name.value) +
+			'&phone=' + encodeURIComponent(form.phone.value) +
+			'&mail=' + encodeURIComponent(form.mail.value) +
+			'&message=' + encodeURIComponent(form.message.value);
 		fetch('mailer/smart.php', {
 			method: 'POST',
 			headers: {
@@ -246,7 +366,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 			return response;
 		}).then(function () {
-			let input = form.querySelectorAll(".input");
+			let input = form.querySelectorAll('.input');
 			for (let i = 0; i < input.length - 1; i++) {
 				input[i].value = '';
 			}
@@ -254,12 +374,11 @@ document.addEventListener("DOMContentLoaded", function () {
 			setTimeout(() => {
 				answer.innerHTML = '';
 			}, 5000);
-		}).catch(function (reason) {
+		}).catch(function () {
 			answer.innerHTML = 'Ошибка';
 			setTimeout(() => {
 				answer.innerHTML = '';
 			}, 5000);
-			console.error('error: ' + reason.status);
 		});
 	}
 

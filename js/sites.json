@@ -1,16 +1,51 @@
 [
 	{
 		"type": "site",
+		"name": "taxistrb.ru",
+		"description": "<h4>Сайт партнера Яндекс.Такси</h4><p>Выполнена адаптивная верстка, проведена работа со скриптами (настройка работы модальных окон, теста, валидация и отправка данных из форм).</p>",
+		"url": "https://haiduk-art.ru/taxi/",
+		"image": "ta.jpg"
+	},
+	{
+		"type": "site",
 		"name": "Макетная мастерская",
-		"description": "Сайт компании по изготовлению макетов",
-		"url": "http://haiduk-art.ru/diploma/",
+		"description": "<h4>Сайт компании по изготовлению макетов</h4><p>Работа является дипломной на курсе Веб-старт. Выполнена адаптиная верстка, подключен слайдер, настроена отправка данных.</p>",
+		"url": "https://haiduk-art.ru/diploma/",
 		"image": "mm.jpg"
 	},
 	{
 		"type": "site",
 		"name": "КАРТИНЫ.ART",
-		"description": "Сайт компании по изготовлению портретов",
+		"description": "<h4>Сайт компании по изготовлению портретов</h4><p>Работа является дипломной на курсе Java-script. Проведена работа со скриптами (использовался чистый JS).</p>",
 		"url": "https://mit0787.github.io/js-diploma/dist/",
 		"image": "ka.jpg"
+	},
+	{
+		"type": "site",
+		"name": "consincom.ru",
+		"description": "<h4>Сайт консалтинговой компании</h4><p>В задачи входила только адаптивная верстка</p>",
+		"url": "https://mit0787.github.io/js-diploma/dist/",
+		"image": "cons.jpg"
+	},
+	{
+		"type": "site",
+		"name": "auto.consincom.ru",
+		"description": "<h4>Сайт компании аренды авто</h4><p>Сайт сверстан с помощью Bootstrap 4.0. Произведена посадка на CMS ModX, организован прием заявок через формы</p>",
+		"url": "https://mit0787.github.io/js-diploma/dist/",
+		"image": "ac.jpg"
+	},
+	{
+		"type": "practise",
+		"name": "Zuevauto",
+		"description": "Практика адаптивной верстки",
+		"url": "https://haiduk-art.ru/zuevauto/",
+		"image": "za.jpg"
+	},
+	{
+		"type": "practise",
+		"name": "Кино-база",
+		"description": "Практика использования API и fetch",
+		"url": "https://haiduk-art.ru/moviedb/",
+		"image": "movie.jpg"
 	}
 ]
